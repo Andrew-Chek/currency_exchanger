@@ -1,0 +1,26 @@
+@import './variables';
+
+@mixin --text-styles {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    color: --text-color;
+}
+
+@mixin --input-params {
+    padding: 10px 20px;
+    border: 1px solid var(--input-color);
+    border-radius: 10px;
+}
+
+@mixin --input-mobile-params {
+    padding: 5px 10px;
+    border: 1px solid var(--input-color);
+    border-radius: 10px;
+}
+
+@mixin --error-input-params {
+    padding: 10px 20px;
+    border: 1px solid var(--error-color);
+    border-radius: 10px;
+}

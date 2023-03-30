@@ -1,1 +1,14 @@
-<p>exchange works!</p>
+<article class="exchange">
+    <app-input 
+        direction="from" 
+        inputValue="{{startAmount}}" 
+        selectValue="{{startCurrency}}" 
+        (sentCurrencyInput)="convertCurrencies($event)">
+    </app-input>
+    <app-input 
+        direction="to" 
+        inputValue="{{exchangeAmount}}" 
+        selectValue="{{exchangeCurrency}}" 
+        (sentCurrencyInput)="convertCurrencies($event)">
+    </app-input>
+</article>
