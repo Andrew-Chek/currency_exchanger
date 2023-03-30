@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.currencies = [];
     const conversionSub = this.exchangeService.convertCurrencies('USD', 'UAH').pipe(
       mergeMap(value => {
-        const usd = {name: 'USD', value: value.result}
+        const usd = {name: 'USD', value: +value.result.toFixed(3)}
         this.currencies.push(usd);
         return this.exchangeService.convertCurrencies('EUR', 'UAH')
       }),
       map(value => {
-        const eur = {name: 'EUR', value: value.result}
+        const eur = {name: 'EUR', value: +value.result.toFixed(3)}
         this.currencies.push(eur);
       })
     ).subscribe();

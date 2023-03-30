@@ -30,3 +30,15 @@
         font-size: 18px;
     }
 }
+@media(max-width: 512px)
+{
+    .currency {
+        &-name {
+            font-size: 12px;
+            padding: 0 2px;
+        }
+        &-value {
+            font-size: 12px;
+        }
+    }
+}
