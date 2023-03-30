@@ -1,6 +1,6 @@
+import { mergeMap, map, Subscription } from 'rxjs';
 import { ExchangeService } from './../../features/services/exchange/exchange.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { mergeMap, map, Subscription } from 'rxjs';
 import { Currency } from 'src/app/shared/interfaces/Currency';
 
 @Component({

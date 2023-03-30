@@ -1,7 +1,13 @@
 .exchange {
     display: flex;
     justify-content: space-around;
+    align-items: baseline;
     background-color: var(--background-color);
+    &-icon {
+        width: 50px;
+        font-size: 30px;
+        cursor: pointer;
+    }
 }
 @media(max-width: 1024px) {
     .exchange {

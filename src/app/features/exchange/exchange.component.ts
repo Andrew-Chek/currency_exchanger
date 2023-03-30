@@ -14,7 +14,7 @@ export class ExchangeComponent implements OnInit, OnDestroy {
   exchangeAmount = 0;
   startCurrency = "UAH"
   exchangeCurrency = "USD"
-  exhangeDirection = false;
+  exchangeDirection = false;
   private subscriptions:Array<Subscription> = []
 
   constructor(private exchangeService: ExchangeService) { }
@@ -23,7 +23,7 @@ export class ExchangeComponent implements OnInit, OnDestroy {
   }
 
   setAmount(amount:number) {
-    this.exchangeAmount != amount ? this.exhangeDirection = true : this.exhangeDirection = false;
+    this.exchangeAmount != amount ? this.exchangeDirection = true : this.exchangeDirection = false;
     this.exchangeAmount = amount;
   }
 
@@ -43,21 +43,34 @@ export class ExchangeComponent implements OnInit, OnDestroy {
   convertCurrencies(currencyInfo: CurrencyInput) {
     this.setCurrencyInfo(currencyInfo)
     let request;
-    this.exhangeDirection ?
+    this.exchangeDirection ?
       request = this.exchangeService.convertCurrencies(this.exchangeCurrency, this.startCurrency, this.exchangeAmount)
       .pipe(
         map((value) => {
-          this.startAmount = value.result;
+          this.startAmount = +value.result.toFixed(3);
           return value;
         })) :
       request = this.exchangeService.convertCurrencies(this.startCurrency, this.exchangeCurrency, this.startAmount)
       .pipe(
         map((value) => {
-          this.exchangeAmount = value.result;
+          this.exchangeAmount = +value.result.toFixed(3);
           return value;
         }));
     const sub = request.subscribe(value => console.log(value));
     this.subscriptions.push(sub);
+  }
+
+  reverseCurrencies()
+  {
+    const lurker = this.startCurrency;
+    this.startCurrency = this.exchangeCurrency;
+    this.exchangeCurrency = lurker;
+    const currencyInfo : CurrencyInput = {
+      directionFlag: false,
+      name: this.startCurrency,
+      amount: this.startAmount
+    }
+    this.convertCurrencies(currencyInfo);
   }
 
   ngOnDestroy(): void {

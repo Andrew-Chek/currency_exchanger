@@ -5,7 +5,7 @@
         selectValue="{{startCurrency}}" 
         (sentCurrencyInput)="convertCurrencies($event)">
     </app-input>
-    <mat-icon class="exchange-icon">swap_horiz</mat-icon>
+    <mat-icon class="exchange-icon" (click)="reverseCurrencies()">swap_horiz</mat-icon>
     <app-input 
         direction="to" 
         inputValue="{{exchangeAmount}}" 
