@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { InputComponent } from './input.component';
 
@@ -15,9 +16,14 @@ describe('InputComponent', () => {
     fixture = TestBed.createComponent(InputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    spyOn(component, 'sendRequestData')
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  describe('#sendRequestData', () => {
+    it('should raise emit event', () => {
+      const input = fixture.debugElement.query(By.css('.input'));
+      input.triggerEventHandler('change');
+      expect(component.sendRequestData).toHaveBeenCalled();
+    });
+  })
+})

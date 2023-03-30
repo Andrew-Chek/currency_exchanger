@@ -22,7 +22,7 @@ export class ExchangeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  setAmount(amount:number) {
+  private setAmount(amount:number) {
     this.exchangeAmount != amount ? this.exchangeDirection = true : this.exchangeDirection = false;
     this.exchangeAmount = amount;
   }
